@@ -1,3 +1,5 @@
+User
+
 # User API Spec
 
 ## Register User
@@ -25,7 +27,7 @@ Response Body (Success):
 }
 ```
 
-Response Body (Success):
+Response Body (Failed):
 
 ```json
 {
@@ -58,7 +60,7 @@ Response Body (Success):
 }
 ```
 
-Response Body (Success):
+Response Body (Failed):
 
 ```json
 {
@@ -68,9 +70,69 @@ Response Body (Success):
 
 ## Get User
 
-Endpoint : POST /api/users/current
+Endpoint : GET /api/users/current
 
+Headers :
+- authorization: token
+
+Response Body (Success):
+
+```json
+{
+  "data": {
+    "username": "john",
+    "name": "john doe",
+  }
+}
+```
+
+Response Body (Failed):
+
+```json
+{
+  "errors": "Unauthorized"
+}
+```
 
 ## Update User
 
+Endpoint : PATCH /api/users/current
+
+Headers :
+- Authorization: token
+
+Request Body:
+
+```json
+{
+  "password": "secret",
+  "name": "john doe"
+}
+```
+
+Response Body (Success):
+
+```json
+{
+  "data": {
+    "username": "john",
+    "name": "john doe"
+  }
+}
+```
+
 ## Logout User
+
+Endpoint : DELETE /api/users/current
+
+Headers :
+- Authorization: token
+
+Response Body (Success):
+
+```json
+{
+  "data": true
+}
+```
+
