@@ -14,12 +14,21 @@ export class TestService {
     });
   }
 
+  async getUser() {
+    return await this.prismaService.user.findUnique({
+      where: {
+        username: 'test',
+      },
+    });
+  }
+
   async createUser() {
     await this.prismaService.user.create({
       data: {
         username: 'test',
         name: 'test',
         password: await bcrypt.hash('test', 10),
+        token: 'test',
       },
     });
   }
